@@ -15,21 +15,22 @@ struct ContentView: View {
             Color.black.opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
-                Text("Echozy")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
-                    .padding(.top, 8)
                 List {
+                    Text("Echozy")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 4)
+                        .listRowSeparator(.hidden)
+                    
                     LazyVStack(spacing: 2) {
-                        ForEach(menuBarManager.runningApps) { app in
-                            AppVolumeRow(app: app)
+                        ForEach(Array(menuBarManager.runningApps.enumerated()), id: \.element.id) { index, app in
+                            AppVolumeRow(app: app, isLast: index == menuBarManager.runningApps.count - 1)
                         }
                     }
                 }
-                .frame(width: 350, height: 280)
+                .frame(width: 300)
             }
         }
     }
@@ -37,10 +38,11 @@ struct ContentView: View {
 
 struct AppVolumeRow: View {
     let app: RunningApp
+    let isLast: Bool
     @EnvironmentObject var menuBarManager: MenuBarManager
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 6) {
                 Image(nsImage: app.icon)
                     .resizable()
@@ -73,13 +75,14 @@ struct AppVolumeRow: View {
                 }
                 .frame(height: 24)
             }
-            .padding(4)
+            .padding(.vertical, 4)
         }
-        .padding(.horizontal, 2)
         .padding(.vertical, 8)
-        Divider()
-            .padding(.horizontal)
-            .padding(.top, 8)
+        if !isLast {
+            Divider()
+                .padding(.top, 0)
+                .ignoresSafeArea()
+        }
     }
 }
 

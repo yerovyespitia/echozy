@@ -15,6 +15,13 @@ struct ContentView: View {
             Color.black.opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
+                Text("Echozy")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                    .padding(.top, 8)
                 List {
                     LazyVStack(spacing: 2) {
                         ForEach(menuBarManager.runningApps) { app in
@@ -22,7 +29,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .frame(width: 300, height: 280)
+                .frame(width: 350, height: 280)
             }
         }
     }
@@ -70,6 +77,9 @@ struct AppVolumeRow: View {
         }
         .padding(.horizontal, 2)
         .padding(.vertical, 8)
+        Divider()
+            .padding(.horizontal)
+            .padding(.top, 8)
     }
 }
 

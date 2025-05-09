@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Echo needs access to control audio levels of applications.</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Echo needs to control other applications to adjust their volume.</string>
+</dict>
+</plist>

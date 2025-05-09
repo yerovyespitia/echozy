@@ -12,10 +12,13 @@ struct EchozyApp: App {
     @StateObject private var menuBarManager = MenuBarManager()
     
     var body: some Scene {
-        MenuBarExtra("Echo", systemImage: "speaker.wave.2") {
+        MenuBarExtra {
             ContentView()
                 .environmentObject(menuBarManager)
+        } label: {
+            Image("MenuIcon")
         }
         .menuBarExtraStyle(.window)
+
     }
 }

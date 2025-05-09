@@ -1,13 +1,42 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import CoreAudio
 
 public class MenuBarManager: ObservableObject {
     @Published public var runningApps: [RunningApp] = []
     private var timer: Timer?
+    private var audioDeviceID: AudioDeviceID = 0
     
     public init() {
+        setupAudioDevice()
         startMonitoring()
+    }
+    
+    private func setupAudioDevice() {
+        var propertySize: UInt32 = 0
+        var propertyAddress = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwarePropertyDefaultOutputDevice,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMain
+        )
+        
+        guard AudioObjectGetPropertyDataSize(
+            AudioObjectID(kAudioObjectSystemObject),
+            &propertyAddress,
+            0,
+            nil,
+            &propertySize
+        ) == noErr else { return }
+        
+        guard AudioObjectGetPropertyData(
+            AudioObjectID(kAudioObjectSystemObject),
+            &propertyAddress,
+            0,
+            nil,
+            &propertySize,
+            &audioDeviceID
+        ) == noErr else { return }
     }
     
     private func startMonitoring() {
@@ -47,16 +76,48 @@ public class MenuBarManager: ObservableObject {
     }
     
     public func setVolume(for appId: String, volume: Float) {
-        // Here we would implement the actual volume control
-        // This would require additional permissions and system integration
-        if let index = runningApps.firstIndex(where: { $0.id == appId }) {
-            runningApps[index].volume = volume
+        var propertyAddress = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
+            mScope: kAudioDevicePropertyScopeOutput,
+            mElement: kAudioObjectPropertyElementMain
+        )
+        
+        var volumeValue = volume
+        let status = AudioObjectSetPropertyData(
+            audioDeviceID,
+            &propertyAddress,
+            0,
+            nil,
+            UInt32(MemoryLayout<Float>.size),
+            &volumeValue
+        )
+        
+        if status == noErr {
+            if let index = runningApps.firstIndex(where: { $0.id == appId }) {
+                runningApps[index].volume = volume
+            }
         }
     }
     
     private func getAppVolume(for bundleId: String) -> Float {
-        // Here we would implement getting the actual volume
-        // For now, return a default value
-        return 1.0
+        var propertyAddress = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwareServiceDeviceProperty_VirtualMainVolume,
+            mScope: kAudioDevicePropertyScopeOutput,
+            mElement: kAudioObjectPropertyElementMain
+        )
+        
+        var volumeValue: Float = 0
+        var propertySize = UInt32(MemoryLayout<Float>.size)
+        
+        let status = AudioObjectGetPropertyData(
+            audioDeviceID,
+            &propertyAddress,
+            0,
+            nil,
+            &propertySize,
+            &volumeValue
+        )
+        
+        return status == noErr ? volumeValue : 1.0
     }
 } 

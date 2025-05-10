@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D4A34402DCFAF7700E8D99D /* VirtualAudioDriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A343D2DCFAF7700E8D99D /* VirtualAudioDriver.c */; };
+		6D4A34412DCFAF7700E8D99D /* VirtualAudioDriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A343E2DCFAF7700E8D99D /* VirtualAudioDriverManager.swift */; };
 		6D56BAE22DCD90B80072C83B /* MacStyleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56BAE12DCD90B80072C83B /* MacStyleSlider.swift */; };
 		6DB5E2292DCD519E007EEDD1 /* EchozyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5E2282DCD519E007EEDD1 /* EchozyApp.swift */; };
 		6DB5E22B2DCD519E007EEDD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5E22A2DCD519E007EEDD1 /* ContentView.swift */; };
@@ -18,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D4A342C2DCFAC6C00E8D99D /* Echozy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Echozy-Bridging-Header.h"; sourceTree = "<group>"; };
+		6D4A343C2DCFAF7700E8D99D /* VirtualAudioDriver.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = VirtualAudioDriver.entitlements; sourceTree = "<group>"; };
+		6D4A343D2DCFAF7700E8D99D /* VirtualAudioDriver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VirtualAudioDriver.c; sourceTree = "<group>"; };
+		6D4A343E2DCFAF7700E8D99D /* VirtualAudioDriverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualAudioDriverManager.swift; sourceTree = "<group>"; };
+		6D4A343F2DCFAF7700E8D99D /* VirtualAudioDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualAudioDriver.h; sourceTree = "<group>"; };
 		6D56BAE12DCD90B80072C83B /* MacStyleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStyleSlider.swift; sourceTree = "<group>"; };
 		6DB5E2252DCD519E007EEDD1 /* Echozy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Echozy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB5E2282DCD519E007EEDD1 /* EchozyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchozyApp.swift; sourceTree = "<group>"; };
@@ -41,6 +48,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D4A34422DCFAF8100E8D99D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A34432DCFAF8900E8D99D /* Audio */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6D4A34432DCFAF8900E8D99D /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A343D2DCFAF7700E8D99D /* VirtualAudioDriver.c */,
+				6D4A343F2DCFAF7700E8D99D /* VirtualAudioDriver.h */,
+				6D4A343E2DCFAF7700E8D99D /* VirtualAudioDriverManager.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		6D4A34442DCFAF9400E8D99D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D4A343C2DCFAF7700E8D99D /* VirtualAudioDriver.entitlements */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6DB5E21C2DCD519E007EEDD1 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +93,8 @@
 		6DB5E2272DCD519E007EEDD1 /* Echozy */ = {
 			isa = PBXGroup;
 			children = (
+				6D4A34442DCFAF9400E8D99D /* Extensions */,
+				6D4A34422DCFAF8100E8D99D /* Core */,
 				6DB5E2372DCD55AE007EEDD1 /* Info.plist */,
 				6DB5E2382DCD55AE007EEDD1 /* MenuBarManager.swift */,
 				6D56BAE12DCD90B80072C83B /* MacStyleSlider.swift */,
@@ -69,6 +104,7 @@
 				6DB5E22C2DCD51A1007EEDD1 /* Assets.xcassets */,
 				6DB5E2312DCD51A1007EEDD1 /* Echozy.entitlements */,
 				6DB5E22E2DCD51A1007EEDD1 /* Preview Content */,
+				6D4A342C2DCFAC6C00E8D99D /* Echozy-Bridging-Header.h */,
 			);
 			path = Echozy;
 			sourceTree = "<group>";
@@ -113,6 +149,7 @@
 				TargetAttributes = {
 					6DB5E2242DCD519E007EEDD1 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -152,8 +189,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4A34402DCFAF7700E8D99D /* VirtualAudioDriver.c in Sources */,
 				6DB5E23B2DCD55AE007EEDD1 /* MenuBarManager.swift in Sources */,
 				6DB5E23C2DCD55AE007EEDD1 /* RunningApp.swift in Sources */,
+				6D4A34412DCFAF7700E8D99D /* VirtualAudioDriverManager.swift in Sources */,
 				6DB5E22B2DCD519E007EEDD1 /* ContentView.swift in Sources */,
 				6DB5E2292DCD519E007EEDD1 /* EchozyApp.swift in Sources */,
 				6D56BAE22DCD90B80072C83B /* MacStyleSlider.swift in Sources */,
@@ -286,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Echozy/Echozy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -304,6 +344,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yerovyespitia.Echozy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Echozy/Echozy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -313,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Echozy/Echozy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -331,6 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yerovyespitia.Echozy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Echozy/Echozy-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
